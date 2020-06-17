@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package proto;
+option go_package = "proto";
+
+message Request {
+  int64 a = 1; // first string--> int var = 1
+  int64 b = 2;
+}
+
+message Response { 
+  int64 result = 1; 
+}
+/*
+1-- Unary            Client  ->  <- Server
+2-- Client Streaming Cient---->   <- Server
+3-- Server Streaming Cient   ->   <----- Server
+4-- BiDirectional Streaming Client ----> <---- Server
+*/
+service CalculatorService {
+  rpc Add(Request) returns (Response);
+  rpc Subtract(Request) returns (Response);
+  rpc Multiply(Request) returns (Response);
+  rpc Divide(Request) returns (Response);
+  rpc Remainder(Request) returns (Response);
+}
